@@ -26,8 +26,6 @@ public class BaseTest extends Driver {
 		
 		driver = initDriver(browser);
 		driver.get("https://keybooks.ro/");
-		
-
 	}
 	
 	

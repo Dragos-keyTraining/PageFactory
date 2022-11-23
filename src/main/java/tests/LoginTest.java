@@ -28,8 +28,8 @@ public class LoginTest extends BaseTest {
 		loginPage.logoutFromApp();
 		
 	}
-	@Parameters({"user", "pass"})
-	@Test(priority =2, groups = "LoginFunctionality")
+	@Parameters({"invalidUser", "invalidPass"})
+	@Test(priority =2, groups = "NotLoginFunctionality")
 	public void invalidLoginTest(String user, String pass) {
 		
 		NavMenuPage navMenu = new NavMenuPage(driver);
