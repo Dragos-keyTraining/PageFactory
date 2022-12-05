@@ -9,7 +9,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -58,11 +60,15 @@ public class Driver {
 			
 		}else if(browser.equalsIgnoreCase("firefox")) {
 			
-			WebDriverManager.firefoxdriver().setup();
-			driver.set(new FirefoxDriver());
+			//WebDriverManager.firefoxdriver().setup();
+			//driver.set(new FirefoxDriver());
+			FirefoxBinary firefoxBinary =  new FirefoxBinary();
+			firefoxBinary.addCommandLineOptions("--headless");
+			FirefoxOptions firefoxOptions =  new FirefoxOptions();
+			firefoxOptions.setBinary(firefoxBinary);
+			rwd = new RemoteWebDriver(new URL("http://localhost:4444/"), firefoxOptions);
+			driver.set(rwd);
 			
-			driver.get().manage().window().maximize();
-			driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 			
 			long firefoxID = Thread.currentThread().getId();
 			System.out.println("Firefox --> Thread id = " + firefoxID);
